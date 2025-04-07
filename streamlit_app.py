@@ -18,8 +18,10 @@ base_minutes = st.number_input("Base Interpreter Minutes per Month", min_value=0
 # Apply 20% growth if blended rate is chosen
 if custom_rates:
     total_minutes = int(base_minutes * 1.20)
-    st.markdown(f"**Adjusted Monthly Interpreter Minutes:** {total_minutes} (20% volume growth applied)")
+    st.metric("Adjusted Monthly Interpreter Minutes", f"{total_minutes:,}", delta="↑ 20%")
 else:
+    total_minutes = base_minutes
+    st.metric("Monthly Interpreter Minutes", f"{total_minutes:,}")
     total_minutes = base_minutes
 
 vri_percent = st.slider("% of Minutes via VRI", 0, 100, 50)

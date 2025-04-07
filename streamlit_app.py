@@ -34,21 +34,25 @@ total_annual_cost = total_monthly_cost * 12
 baseline_avg_rate = (0.85 * (vri_percent / 100)) + (0.80 * (phone_percent / 100))
 baseline_monthly_cost = base_minutes * baseline_avg_rate
 baseline_annual_cost = baseline_monthly_cost * 12
-projected_savings = baseline_annual_cost - total_annual_cost
+total_months = 12
 
-# Output results
+# Calculate projected losses or savings
+projected_monthly_difference = baseline_monthly_cost - total_monthly_cost
+projected_annual_difference = baseline_annual_cost - total_annual_cost
+
 st.markdown("---")
 st.markdown("### 💰 Cost Summary")
 st.metric("Monthly Cost ($)", f"{total_monthly_cost:,.2f}")
 st.metric("Annual Cost ($)", f"{total_annual_cost:,.2f}")
 
 # Show projected savings vs actual loss
-if projected_savings > 0:
-    st.success(f"Projected Savings: ${projected_savings:,.2f}")
+if projected_annual_difference > 0:
+    st.success(f"Projected Annual Savings: ${projected_annual_difference:,.2f}")
+    st.success(f"Projected Monthly Savings: ${projected_monthly_difference:,.2f}")
 else:
-    st.error(f"Actual Loss: (${abs(projected_savings):,.2f})")
+    st.error(f"Actual Annual Loss: (${abs(projected_annual_difference):,.2f})")
+    st.error(f"Actual Monthly Loss: (${abs(projected_monthly_difference):,.2f})")
 
-# Break-even analysis
 st.markdown("---")
 st.markdown("### 📈 Break-Even Rate Calculator")
 

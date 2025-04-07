@@ -13,8 +13,9 @@ st.markdown("### Interpreter Usage & Cost Settings")
 
 st.markdown("Renegotiate your vendor rate for VRI and/or phone and determine your cost savings. Interpreter volume will increase by 20% regardless of your rate strategy due to year-over-year growth and patient/provider demand.")
 
-# Base interpreter minutes per month
-base_minutes = st.number_input("Base Interpreter Minutes per Month", min_value=0, value=20000, step=1000)
+# Fixed baseline volume for demo simplicity
+base_minutes = 20000
+st.markdown(f"**Base Interpreter Minutes per Month:** {base_minutes:,}")
 total_minutes = int(base_minutes * 1.20)
 st.metric("Adjusted Monthly Interpreter Minutes", f"{total_minutes:,}", delta="↑ 20%")
 
@@ -36,10 +37,9 @@ total_annual_cost = total_monthly_cost * 12
 # Cost projections
 baseline_vri_rate = 0.85
 baseline_phone_rate = 0.80
-# Baseline cost uses a fixed 20,000-minute reference to allow for year-over-year comparison
-baseline_reference_minutes = 20000
-baseline_vri_minutes = baseline_reference_minutes * (vri_percent / 100)
-baseline_phone_minutes = baseline_reference_minutes * (phone_percent / 100)
+# Baseline cost dynamically matches user-defined base minutes to simulate growth over the next year
+baseline_vri_minutes = base_minutes * (vri_percent / 100)
+baseline_phone_minutes = base_minutes * (phone_percent / 100)
 baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_phone_minutes * baseline_phone_rate)
 
 

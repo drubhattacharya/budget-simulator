@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Interpreter Rate Adjustment Simulator", layout="centered")
-st.title("📊 Vendor Rate Renegotiation Simulator")
+st.title("📊 Vendor Rate Renegotiation")
 st.caption("This tool shows projected savings or losses based on renegotiated per-minute rates and adjustments to modality distribution, assuming a consistent monthly interpreter volume.")
 
 # Fixed baseline
@@ -83,6 +83,6 @@ if st.button("🔍 Calculate Break-Even Rate"):
     break_even_rate_vri = vri_base_cost / vri_projected_minutes
     break_even_rate_phone = phone_base_cost / phone_projected_minutes
 
-    st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} /min and your phone rate down under ${break_even_rate_phone:.2f} /min just to avoid losses without any significant improvements in access or outcomes? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} /min and your phone rate down under ${break_even_rate_phone:.2f} /min? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")

@@ -49,13 +49,11 @@ projected_annual_difference = baseline_annual_cost - total_annual_cost
 st.markdown("---")
 st.markdown("### 💸 Cost Savings")
 if projected_annual_difference < 0:
-    st.markdown(f"<p style='color:red; font-size:20px;'>Annual: (${abs(total_annual_cost):,.2f})</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:red; font-size:20px;'>Monthly: (${abs(total_monthly_cost):,.2f})</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:red; font-size:20px;'>Annual Savings: (${abs(projected_annual_difference):,.2f})</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:red; font-size:20px;'>Monthly Savings: (${abs(projected_monthly_difference):,.2f})</p>", unsafe_allow_html=True)
 else:
-    st.markdown(f"<p style='color:green; font-size:20px;'>Annual: ${total_annual_cost:,.2f}</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:green; font-size:20px;'>Monthly: ${total_monthly_cost:,.2f}</p>", unsafe_allow_html=True)
-    st.success(f"Annual Savings: ${projected_annual_difference:,.2f}")
-    st.success(f"Monthly Savings: ${projected_monthly_difference:,.2f}")
+    st.markdown(f"<p style='color:green; font-size:20px;'>Annual Savings: ${projected_annual_difference:,.2f}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:green; font-size:20px;'>Monthly Savings: ${projected_monthly_difference:,.2f}</p>", unsafe_allow_html=True)
 
 
 st.markdown("### 📈 Break-Even Rate Calculator")
@@ -63,7 +61,7 @@ st.caption("The break-even rate is the single per-minute rate that would allow y
 
 # Break-even rate based on baseline budget and increased volume
 if st.button("Calculate Break-Even Rate"):
-    break_even_rate = ((vri_rate * vri_minutes) + (phone_rate * phone_minutes)) / (vri_minutes + phone_minutes)
+    break_even_rate = baseline_annual_cost / (total_minutes * 12)
     st.success(f"Break-Even Rate ($/min): ${break_even_rate:.2f}")
 
 # Additional notes

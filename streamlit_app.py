@@ -49,11 +49,11 @@ projected_annual_difference = baseline_annual_cost - total_annual_cost
 st.markdown("---")
 st.markdown("### 💸 Cost Savings")
 if projected_annual_difference < 0:
-    st.error(f"Annual: ${total_annual_cost:,.2f}")
-    st.error(f"Monthly: ${total_monthly_cost:,.2f}")
+    st.markdown(f"<p style='color:red; font-size:20px;'>Annual: (${abs(total_annual_cost):,.2f})</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:red; font-size:20px;'>Monthly: (${abs(total_monthly_cost):,.2f})</p>", unsafe_allow_html=True)
 else:
-    st.success(f"Annual Cost ($): ${total_annual_cost:,.2f}")
-    st.success(f"Monthly Cost ($): ${total_monthly_cost:,.2f}")
+    st.markdown(f"<p style='color:green; font-size:20px;'>Annual: ${total_annual_cost:,.2f}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:green; font-size:20px;'>Monthly: ${total_monthly_cost:,.2f}</p>", unsafe_allow_html=True)
     st.success(f"Annual Savings: ${projected_annual_difference:,.2f}")
     st.success(f"Monthly Savings: ${projected_monthly_difference:,.2f}")
 

@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Interpreter Rate Adjustment Simulator", layout="centered")
-st.title("📊 Interpreter Rate Impact Simulator")
+st.title("📊 Vendor Rate Renegotiation Simulator")
 st.caption("This tool shows projected savings or losses based on renegotiated per-minute rates and adjustments to modality distribution, assuming a consistent monthly interpreter volume.")
 
 # Fixed baseline
@@ -28,7 +28,8 @@ vri_percent = st.slider("% of Minutes via VRI", 0, 100, 50)
 phone_percent = 100 - vri_percent
 
 # Projected annual cost using updated inputs
-projected_annual_cost = base_minutes * ((vri_percent / 100 * vri_new_rate) + (phone_percent / 100 * phone_new_rate)) * 12
+projected_minutes = base_minutes * 1.20
+projected_annual_cost = projected_minutes * ((vri_percent / 100 * vri_new_rate) + (phone_percent / 100 * phone_new_rate)) * 12
 projected_monthly_cost = projected_annual_cost / 12
 
 # Savings/losses

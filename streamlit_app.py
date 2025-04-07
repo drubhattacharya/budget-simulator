@@ -49,10 +49,8 @@ projected_annual_difference = baseline_annual_cost - total_annual_cost
 st.markdown("---")
 st.markdown("### 💸 Cost Savings")
 if projected_annual_difference < 0:
-    st.error(f"Annual Cost ($): ${total_annual_cost:,.2f}")
-    st.error(f"Monthly Cost ($): ${total_monthly_cost:,.2f}")
-    st.error(f"Annual Loss: (${abs(projected_annual_difference):,.2f})")
-    st.error(f"Monthly Loss: (${abs(projected_monthly_difference):,.2f})")
+    st.error(f"Annual: ${total_annual_cost:,.2f}")
+    st.error(f"Monthly: ${total_monthly_cost:,.2f}")
 else:
     st.success(f"Annual Cost ($): ${total_annual_cost:,.2f}")
     st.success(f"Monthly Cost ($): ${total_monthly_cost:,.2f}")

@@ -47,19 +47,19 @@ projected_monthly_difference = baseline_monthly_cost - total_monthly_cost
 projected_annual_difference = baseline_annual_cost - total_annual_cost
 
 st.markdown("---")
-st.markdown("### 💰 Cost Summary")
-st.metric("Monthly Cost ($)", f"{total_monthly_cost:,.2f}")
-st.metric("Annual Cost ($)", f"{total_annual_cost:,.2f}")
-
-# Show projected savings vs actual loss
-if projected_annual_difference > 0:
-    st.success(f"Projected Annual Savings: ${projected_annual_difference:,.2f}")
-    st.success(f"Projected Monthly Savings: ${projected_monthly_difference:,.2f}")
+st.markdown("### 💸 Cost Savings")
+if projected_annual_difference < 0:
+    st.error(f"Annual Cost ($): ${total_annual_cost:,.2f}")
+    st.error(f"Monthly Cost ($): ${total_monthly_cost:,.2f}")
+    st.error(f"Annual Loss: (${abs(projected_annual_difference):,.2f})")
+    st.error(f"Monthly Loss: (${abs(projected_monthly_difference):,.2f})")
 else:
-    st.error(f"Actual Annual Loss: (${abs(projected_annual_difference):,.2f})")
-    st.error(f"Actual Monthly Loss: (${abs(projected_monthly_difference):,.2f})")
+    st.success(f"Annual Cost ($): ${total_annual_cost:,.2f}")
+    st.success(f"Monthly Cost ($): ${total_monthly_cost:,.2f}")
+    st.success(f"Annual Savings: ${projected_annual_difference:,.2f}")
+    st.success(f"Monthly Savings: ${projected_monthly_difference:,.2f}")
 
-st.markdown("---")
+
 st.markdown("### 📈 Break-Even Rate Calculator")
 
 # Correct break-even rate calculation

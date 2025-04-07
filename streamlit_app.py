@@ -6,13 +6,24 @@ st.title("📊 Budget Constraints Simulator")
 st.subheader("Use this tool to explore cost trade-offs in language access strategies.")
 
 # User inputs
-st.markdown("### Monthly Interpreter Usage Inputs")
-total_minutes = st.number_input("Total Interpreter Minutes per Month", min_value=0, value=20000, step=1000)
+st.markdown("### Interpreter Usage & Cost Settings")
+
+# Allow user to choose whether to apply volume growth when rate is changed
+st.markdown("If you change to a blended rate, interpreter volume will increase 20% due to higher patient demand and clinician preference for improved technology.")
+custom_rates = st.checkbox("Use a single negotiated rate for both modalities", value=False)
+
+# Base interpreter minutes per month
+base_minutes = st.number_input("Base Interpreter Minutes per Month", min_value=0, value=20000, step=1000)
+
+# Apply 20% growth if blended rate is chosen
+if custom_rates:
+    total_minutes = int(base_minutes * 1.20)
+    st.markdown(f"**Adjusted Monthly Interpreter Minutes:** {total_minutes} (20% volume growth applied)")
+else:
+    total_minutes = base_minutes
+
 vri_percent = st.slider("% of Minutes via VRI", 0, 100, 50)
 phone_percent = 100 - vri_percent
-
-st.markdown("### Interpreter Cost Settings")
-custom_rates = st.checkbox("Use a single negotiated rate for both modalities", value=False)
 
 if custom_rates:
     blended_rate = st.number_input("Blended Rate ($/min)", min_value=0.0, value=0.75, step=0.01)
@@ -40,7 +51,7 @@ st.metric("Annual Cost ($)", f"{total_annual_cost:,.2f}")
 st.markdown("---")
 st.markdown("### 📌 Interpretation")
 st.info(
-    "Even with rate improvements, growing LEP volume may still lead to rising costs year-over-year. Savings alone may not be enough — strategic reinvestment is key."
+    "Even with lower rates, increased interpreter volume due to patient and provider demand may offset your savings. Cost containment without quality compromise requires a balanced strategy."
 )
 
 st.markdown("Use this tool during planning meetings to simulate what-if scenarios.")

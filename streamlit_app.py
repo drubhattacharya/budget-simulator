@@ -31,12 +31,17 @@ total_monthly_cost = vri_cost + phone_cost
 total_annual_cost = total_monthly_cost * 12
 
 # Cost projections
-baseline_avg_rate = (0.85 * (vri_percent / 100)) + (0.80 * (phone_percent / 100))
-baseline_monthly_cost = base_minutes * baseline_avg_rate
+# Baseline cost is based on status quo rates applied to the increased minutes
+baseline_vri_rate = 0.85
+baseline_phone_rate = 0.80
+baseline_vri_minutes = total_minutes * (vri_percent / 100)
+baseline_phone_minutes = total_minutes * (phone_percent / 100)
+baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_phone_minutes * baseline_phone_rate)
 baseline_annual_cost = baseline_monthly_cost * 12
-total_months = 12
 
 # Calculate projected losses or savings
+projected_monthly_difference = baseline_monthly_cost - total_monthly_cost
+projected_annual_difference = baseline_annual_cost - total_annual_cost
 projected_monthly_difference = baseline_monthly_cost - total_monthly_cost
 projected_annual_difference = baseline_annual_cost - total_annual_cost
 

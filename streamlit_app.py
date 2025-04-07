@@ -22,8 +22,8 @@ st.markdown("**Current VRI Rate:** $0.85/min")
 st.markdown("**Current Phone Rate:** $0.80/min")
 
 # User-adjustable inputs
-vri_new_rate = st.number_input("Enter your renegotiated VRI rate ($/min)", min_value=0.0, value=0.75, step=0.01)
-phone_new_rate = st.number_input("Enter your renegotiated Phone rate ($/min)", min_value=0.0, value=0.75, step=0.01)
+vri_new_rate = st.number_input("Enter your renegotiated VRI rate ($/min)", min_value=0.0, value=0.0, step=0.01)
+phone_new_rate = st.number_input("Enter your renegotiated Phone rate ($/min)", min_value=0.0, value=0.0, step=0.01)
 vri_percent = st.slider("% of Minutes via VRI", 0, 100, 50)
 phone_percent = 100 - vri_percent
 

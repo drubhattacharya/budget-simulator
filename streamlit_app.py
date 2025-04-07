@@ -83,7 +83,7 @@ if st.button("🔍 Calculate Break-Even Rate"):
     break_even_rate_vri = vri_base_cost / vri_projected_minutes
     break_even_rate_phone = phone_base_cost / phone_projected_minutes
 
-    st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} and your phone rate down under ${break_even_rate_phone:.2f}? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} /min and your phone rate down under ${break_even_rate_phone:.2f} /min? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("This tool assumes a fixed baseline of 20,000 interpreter minutes/month with a 50/50 VRI and Phone modality split. Adjust the renegotiated per-minute rates and modality mix to explore potential savings or losses.")

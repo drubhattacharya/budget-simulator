@@ -63,7 +63,7 @@ st.caption("The break-even rate is the single per-minute rate that would allow y
 
 # Break-even rate based on baseline budget and increased volume
 if st.button("Calculate Break-Even Rate"):
-    break_even_rate = baseline_annual_cost / (total_minutes * 12)
+    break_even_rate = ((vri_rate * vri_minutes) + (phone_rate * phone_minutes)) / (vri_minutes + phone_minutes)
     st.success(f"Break-Even Rate ($/min): ${break_even_rate:.2f}")
 
 # Additional notes

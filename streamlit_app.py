@@ -37,12 +37,12 @@ savings_monthly = base_annual_cost / 12 - projected_monthly_cost
 
 st.markdown("---")
 st.markdown("### 💸 Projected Cost Impact")
-if savings_annual < 0:
-    st.markdown(f"<p style='color:red; font-size:20px;'>Annual Loss: (${abs(savings_annual):,.2f})</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:red; font-size:20px;'>Monthly Loss: (${abs(savings_monthly):,.2f})</p>", unsafe_allow_html=True)
-else:
-    st.markdown(f"<p style='color:green; font-size:20px;'>Annual Savings: ${savings_annual:,.2f}</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:green; font-size:20px;'>Monthly Savings: ${savings_monthly:,.2f}</p>", unsafe_allow_html=True)
+
+monthly_savings_text = f"${savings_monthly:,.2f}" if savings_monthly >= 0 else f"(${abs(savings_monthly):,.2f})"
+annual_savings_text = f"${savings_annual:,.2f}" if savings_annual >= 0 else f"(${abs(savings_annual):,.2f})"
+
+color = 'green' if savings_annual >= 0 else 'red'
+st.markdown(f"<p style='color:{color}; font-size:16px;'><strong>Based on your renegotiated rates, the actual monthly savings were {monthly_savings_text} and actual annual savings of {annual_savings_text}. This is because the year to year volume of LEP patients and demand for language access is increasing upwards of 20%. Notably, even current access to interpreters for LEP patients accounts for less than 20% of the actual documented need, i.e. 80% of LEP patients do not have access to language services across the continuum of care.</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("This tool assumes a fixed baseline of 20,000 interpreter minutes/month with a 50/50 VRI and Phone modality split. Adjust the renegotiated per-minute rates and modality mix to explore potential savings or losses.")

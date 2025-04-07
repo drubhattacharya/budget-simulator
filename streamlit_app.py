@@ -3,6 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Language Access Budget Simulator", layout="centered")
 st.title("📊 Budget Constraints Simulator")
+st.caption("Note: This tool is designed for single-year planning. It helps evaluate how future volume growth impacts cost projections based on today’s interpreter usage and rate structure.")
 st.subheader("Use this tool to explore cost trade-offs in language access strategies.")
 
 # User inputs

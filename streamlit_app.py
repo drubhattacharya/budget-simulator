@@ -28,13 +28,13 @@ vri_percent = st.slider("% of Minutes via VRI", 0, 100, 50)
 phone_percent = 100 - vri_percent
 
 # Projected annual cost using updated inputs
-projected_minutes = base_minutes * 1.20
+projected_minutes = base_minutes
 projected_annual_cost = projected_minutes * ((vri_percent / 100 * vri_new_rate) + (phone_percent / 100 * phone_new_rate)) * 12
 projected_monthly_cost = projected_annual_cost / 12
 
 # Savings/losses
 savings_annual = base_annual_cost - projected_annual_cost
-savings_monthly = base_annual_cost / 12 - projected_monthly_cost
+savings_monthly = savings_annual / 12
 
 st.markdown("---")
 st.markdown("### 💸 Projected Cost Impact")

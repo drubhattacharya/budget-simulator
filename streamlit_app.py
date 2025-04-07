@@ -34,10 +34,35 @@ projected_monthly_cost = projected_annual_cost / 12
 
 # Savings/losses
 savings_annual = base_annual_cost - projected_annual_cost
-savings_monthly = savings_annual / 12
+savings_monthly = base_annual_cost / 12 - projected_monthly_cost
+
+# Calculate projected savings assuming no growth (for illusion of success)
+projected_savings_static = (base_minutes * ((vri_default_percent * vri_rate) + (phone_default_percent * phone_rate)) - base_minutes * ((vri_percent / 100 * vri_new_rate) + (phone_percent / 100 * phone_new_rate))) * 12
+monthly_projected_savings_static = projected_savings_static / 12
+
+# True cost impact with 20% volume growth (actual)
+projected_minutes_actual = base_minutes * 1.20
+projected_actual_annual_cost = projected_minutes_actual * ((vri_percent / 100 * vri_new_rate) + (phone_percent / 100 * phone_new_rate)) * 12
+actual_annual_savings = base_annual_cost - projected_actual_annual_cost
+actual_monthly_savings = actual_annual_savings / 12
+
+# Formatting
+static_monthly_text = f"${monthly_projected_savings_static:,.2f}" if monthly_projected_savings_static >= 0 else f"(${abs(monthly_projected_savings_static):,.2f})"
+static_annual_text = f"${projected_savings_static:,.2f}" if projected_savings_static >= 0 else f"(${abs(projected_savings_static):,.2f})"
+actual_monthly_text = f"${actual_monthly_savings:,.2f}" if actual_monthly_savings >= 0 else f"(${abs(actual_monthly_savings):,.2f})"
+actual_annual_text = f"${actual_annual_savings:,.2f}" if actual_annual_savings >= 0 else f"(${abs(actual_annual_savings):,.2f})"
+
+color_static = 'green' if projected_savings_static >= 0 else 'red'
+color_actual = 'green' if actual_annual_savings >= 0 else 'red'
+
+st.markdown(f"<p style='color:{color_static}; font-size:16px;'><strong>Projected (flat volume): Monthly = {static_monthly_text}, Annual = {static_annual_text}</strong></p>", unsafe_allow_html=True)
+st.markdown(f"<p style='color:{color_actual}; font-size:16px;'><strong>Actual (20% growth): Monthly = {actual_monthly_text}, Annual = {actual_annual_text}</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown("### 💸 Projected Cost Impact")
+st.markdown("**Takeaway:** While renegotiating vendor rates may appear effective in isolation, it fails to offset increasing interpreter demand. With year-over-year LEP volume growth exceeding 20%, vendor rate adjustments alone are neither effective nor sustainable.")
+
+st.markdown("---")
+st.markdown("### 💸 Projected vs Actual Cost Impact")
 
 monthly_savings_text = f"${savings_monthly:,.2f}" if savings_monthly >= 0 else f"(${abs(savings_monthly):,.2f})"
 annual_savings_text = f"${savings_annual:,.2f}" if savings_annual >= 0 else f"(${abs(savings_annual):,.2f})"

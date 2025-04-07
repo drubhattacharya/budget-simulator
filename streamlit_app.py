@@ -46,7 +46,6 @@ baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_p
 # Calculate projected losses or savings
 projected_monthly_difference = (baseline_vri_minutes * baseline_vri_rate + baseline_phone_minutes * baseline_phone_rate) - (vri_minutes * vri_rate + phone_minutes * phone_rate)
 projected_annual_difference = projected_monthly_difference * 12
-projected_monthly_difference = baseline_monthly_cost - total_monthly_cost
 
 st.markdown("---")
 st.markdown("### 💸 Cost Savings")

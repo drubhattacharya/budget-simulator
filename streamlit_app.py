@@ -36,9 +36,10 @@ total_annual_cost = total_monthly_cost * 12
 # Cost projections
 baseline_vri_rate = 0.85
 baseline_phone_rate = 0.80
-# Baseline cost is dynamically calculated using user-defined base minutes (reflecting evolving organizational needs)
-baseline_vri_minutes = base_minutes * (vri_percent / 100)
-baseline_phone_minutes = base_minutes * (phone_percent / 100)
+# Baseline cost uses a fixed 20,000-minute reference to allow for year-over-year comparison
+baseline_reference_minutes = 20000
+baseline_vri_minutes = baseline_reference_minutes * (vri_percent / 100)
+baseline_phone_minutes = baseline_reference_minutes * (phone_percent / 100)
 baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_phone_minutes * baseline_phone_rate)
 
 

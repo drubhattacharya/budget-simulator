@@ -56,7 +56,7 @@ st.markdown("### 📈 Break-Even Rate Calculator")
 break_even_rate = baseline_annual_cost / (total_minutes * 12)
 
 st.markdown(f"To maintain your original annual spend of **${baseline_annual_cost:,.2f}** with a **20% increase in interpreter minutes**, you'd need to renegotiate a unified per-minute rate of:")
-st.metric("Break-Even Rate ($/min)", f"{break_even_rate:.4f}")
+st.metric("Break-Even Rate ($/min)", f"{break_even_rate:.2f}")
 
 st.markdown("How realistic is it to renegotiate your VRI and phone rates to this level?")
 

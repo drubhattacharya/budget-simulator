@@ -6,6 +6,8 @@ st.title("📊 Budget Constraints Simulator")
 st.subheader("Use this tool to explore cost trade-offs in language access strategies.")
 
 # User inputs
+if st.button("🔄 Reset to Default Conditions"):
+    st.experimental_rerun()
 st.markdown("### Interpreter Usage & Cost Settings")
 
 st.markdown("Renegotiate your vendor rate for VRI and/or phone and determine your cost savings. Interpreter volume will increase by 20% regardless of your rate strategy due to year-over-year growth and patient/provider demand.")
@@ -66,6 +68,9 @@ if st.button("Calculate Break-Even Rate"):
 
     break_even_rate_vri = baseline_annual_cost_vri / (vri_minutes * 12) if vri_minutes > 0 else 0
     break_even_rate_phone = baseline_annual_cost_phone / (phone_minutes * 12) if phone_minutes > 0 else 0
+
+    st.session_state['break_even_rate_vri'] = break_even_rate_vri
+    st.session_state['break_even_rate_phone'] = break_even_rate_phone
 
     st.success(f"Break-Even VRI Rate ($/min): ${break_even_rate_vri:.4f}")
     st.success(f"Break-Even Phone Rate ($/min): ${break_even_rate_phone:.4f}")

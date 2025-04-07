@@ -31,7 +31,8 @@ total_monthly_cost = vri_cost + phone_cost
 total_annual_cost = total_monthly_cost * 12
 
 # Cost projections
-baseline_monthly_cost = base_minutes * ((vri_percent / 100) * 0.85 + (phone_percent / 100) * 0.80)
+baseline_avg_rate = (0.85 * (vri_percent / 100)) + (0.80 * (phone_percent / 100))
+baseline_monthly_cost = base_minutes * baseline_avg_rate
 baseline_annual_cost = baseline_monthly_cost * 12
 projected_savings = baseline_annual_cost - total_annual_cost
 
@@ -51,11 +52,11 @@ else:
 st.markdown("---")
 st.markdown("### 📈 Break-Even Rate Calculator")
 
-# Calculate the break-even flat rate needed to offset the 20% volume increase
-break_even_rate = baseline_annual_cost / total_minutes
+# Correct break-even rate calculation
+break_even_rate = baseline_annual_cost / (total_minutes * 12)
 
-st.markdown(f"To maintain your current annual spend (${baseline_annual_cost:,.2f}) even with a 20% increase in interpreter volume, you'd need to renegotiate a single flat rate of:")
-st.metric("Break-Even Rate ($/min)", f"{break_even_rate:.2f}")
+st.markdown(f"To maintain your original annual spend of **${baseline_annual_cost:,.2f}** with a **20% increase in interpreter minutes**, you'd need to renegotiate a unified per-minute rate of:")
+st.metric("Break-Even Rate ($/min)", f"{break_even_rate:.4f}")
 
 st.markdown("How realistic is it to renegotiate your VRI and phone rates to this level?")
 

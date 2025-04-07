@@ -61,11 +61,15 @@ st.caption("The break-even rate is the single per-minute rate that would allow y
 
 # Break-even rate based on baseline budget and increased volume
 if st.button("Calculate Break-Even Rate"):
-    break_even_rate_vri = baseline_annual_cost * (vri_percent / 100) / (vri_minutes * 12) if vri_minutes > 0 else 0
-    break_even_rate_phone = baseline_annual_cost * (phone_percent / 100) / (phone_minutes * 12) if phone_minutes > 0 else 0
+    baseline_annual_cost_vri = baseline_vri_minutes * baseline_vri_rate * 12
+    baseline_annual_cost_phone = baseline_phone_minutes * baseline_phone_rate * 12
+
+    break_even_rate_vri = baseline_annual_cost_vri / (vri_minutes * 12) if vri_minutes > 0 else 0
+    break_even_rate_phone = baseline_annual_cost_phone / (phone_minutes * 12) if phone_minutes > 0 else 0
+
     st.success(f"Break-Even VRI Rate ($/min): ${break_even_rate_vri:.4f}")
     st.success(f"Break-Even Phone Rate ($/min): ${break_even_rate_phone:.4f}")
-    st.markdown(f"**Keeping the budget as is, how confident are you in renegotiating the vendor rate down under ${break_even_rate_vri:.2f}/min for VRI and ${break_even_rate_phone:.2f}/min for phone to avoid losses? It may be prudent to explore other, cost-effective solutions.**")
+    st.markdown(f"<p style='font-size:18px;'><strong>Keeping the budget as is, how confident are you in renegotiating the vendor rate down under ${break_even_rate_vri:.2f}/min for VRI and ${break_even_rate_phone:.2f}/min for phone to avoid losses? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
 
 # Additional notes
 st.markdown("---")

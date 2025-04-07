@@ -37,12 +37,7 @@ baseline_phone_rate = 0.80
 baseline_vri_minutes = base_minutes * (vri_percent / 100)
 baseline_phone_minutes = base_minutes * (phone_percent / 100)
 baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_phone_minutes * baseline_phone_rate)
-baseline_vri_rate = 0.85
-baseline_phone_rate = 0.80
-baseline_vri_minutes = total_minutes * (vri_percent / 100)
-baseline_phone_minutes = total_minutes * (phone_percent / 100)
-baseline_monthly_cost = (baseline_vri_minutes * baseline_vri_rate) + (baseline_phone_minutes * baseline_phone_rate)
-baseline_annual_cost = baseline_monthly_cost * 12
+
 
 # Calculate projected losses or savings
 projected_monthly_difference = baseline_monthly_cost - total_monthly_cost

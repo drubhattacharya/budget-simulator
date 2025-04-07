@@ -62,13 +62,17 @@ st.markdown("---")
 st.markdown("**Takeaway:** While renegotiating vendor rates may appear effective in isolation, it fails to offset increasing interpreter demand. With year-over-year LEP volume growth exceeding 20%, vendor rate adjustments alone are neither effective nor sustainable.")
 
 st.markdown("---")
-st.markdown("### 💸 Projected vs Actual Cost Impact")
+
 
 monthly_savings_text = f"${savings_monthly:,.2f}" if savings_monthly >= 0 else f"(${abs(savings_monthly):,.2f})"
 annual_savings_text = f"${savings_annual:,.2f}" if savings_annual >= 0 else f"(${abs(savings_annual):,.2f})"
 
 color = 'green' if savings_annual >= 0 else 'red'
-st.markdown(f"<p style='color:{color}; font-size:16px;'><strong>Based on your renegotiated rates, the actual monthly savings were {monthly_savings_text} and actual annual savings of {annual_savings_text}. This is because the year to year volume of LEP patients and demand for language access is increasing upwards of 20%. Notably, even current access to interpreters for LEP patients accounts for less than 20% of the actual documented need, i.e. 80% of LEP patients do not have access to language services across the continuum of care.</strong></p>", unsafe_allow_html=True)
+if st.button("🔍 Calculate Break-Even Rate"):
+    break_even_rate_vri = (base_annual_cost / 12) / (base_minutes * 1.20) * (vri_percent / 100)
+    break_even_rate_phone = (base_annual_cost / 12) / (base_minutes * 1.20) * (phone_percent / 100)
+    st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} and your phone rate down under ${break_even_rate_phone:.2f}? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("This tool assumes a fixed baseline of 20,000 interpreter minutes/month with a 50/50 VRI and Phone modality split. Adjust the renegotiated per-minute rates and modality mix to explore potential savings or losses.")
+

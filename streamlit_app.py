@@ -61,10 +61,9 @@ else:
 st.markdown("### 📈 Break-Even Rate Calculator")
 st.caption("The break-even rate is the single per-minute rate that would allow you to serve increased interpreter demand while keeping your total budget flat. It helps you evaluate whether renegotiating your contract is enough to offset rising volume.")
 
-# Break-even rate based on current modality-specific volumes
+# Break-even rate based on baseline budget and increased volume
 if st.button("Calculate Break-Even Rate"):
-    weighted_current_cost = vri_cost + phone_cost
-    break_even_rate = weighted_current_cost / (vri_minutes + phone_minutes)
+    break_even_rate = baseline_annual_cost / (total_minutes * 12)
     st.success(f"Break-Even Rate ($/min): ${break_even_rate:.2f}")
 
 # Additional notes

@@ -69,10 +69,13 @@ annual_savings_text = f"${savings_annual:,.2f}" if savings_annual >= 0 else f"($
 
 color = 'green' if savings_annual >= 0 else 'red'
 if st.button("🔍 Calculate Break-Even Rate"):
-    break_even_rate_vri = (base_annual_cost / 12) / (base_minutes * 1.20) * (vri_percent / 100)
-    break_even_rate_phone = (base_annual_cost / 12) / (base_minutes * 1.20) * (phone_percent / 100)
+    baseline_vri_cost = base_annual_cost * (vri_percent / 100)
+baseline_phone_cost = base_annual_cost * (phone_percent / 100)
+projected_vri_minutes = base_minutes * 1.20 * (vri_percent / 100)
+projected_phone_minutes = base_minutes * 1.20 * (phone_percent / 100)
+break_even_rate_vri = baseline_vri_cost / projected_vri_minutes
+    break_even_rate_phone = baseline_phone_cost / projected_phone_minutes
     st.markdown(f"<p style='font-size:16px;'><strong>How confident are you in renegotiating your VRI rate down under ${break_even_rate_vri:.2f} and your phone rate down under ${break_even_rate_phone:.2f}? It may be prudent to explore other, cost-effective solutions.</strong></p>", unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("This tool assumes a fixed baseline of 20,000 interpreter minutes/month with a 50/50 VRI and Phone modality split. Adjust the renegotiated per-minute rates and modality mix to explore potential savings or losses.")
-
